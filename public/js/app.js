@@ -32,5 +32,4 @@ $form.on('submit', function(event){
 		text: $text.val()
 	});
 	$text.val('').focus();
-
 });

@@ -4,6 +4,24 @@
 	display: flex;
 	align-items:center;
 }
-.alert.alert-primary h1.form-signin-heading{
-	text-align: center;
+h1{
+	margin: 24px 0;
+}
+.message p{
+	margin: 6px 0; 
+}
+
+.list-group-item:last-child {
+    margin-bottom: 20px;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+li:nth-child(even) {
+    color: #1b1e21;
+    background-color: #c6c8ca;
+}
+li:nth-child(odd) {
+   background-color: #fdfdfe;
+   color: #818182;
 }
