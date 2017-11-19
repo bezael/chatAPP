@@ -4,3 +4,6 @@
 	display: flex;
 	align-items:center;
 }
+.alert.alert-primary h1.form-signin-heading{
+	text-align: center;
+}
