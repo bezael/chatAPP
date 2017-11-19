@@ -4,10 +4,6 @@ const port = process.env.PORT || 3300;
 const http = require('http').Server(app);
 let io = require('socket.io')(http);
 let moment = require('moment');
-//let now = moment();
-//let timestamp = now.valueOf();
-//let timestampMoment = moment.utc(timestamp);
-
 app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function(socket){
@@ -20,6 +16,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.emit('message', {
+		name: 'System',
 		text: 'Welcome to the chat application!',
 		timestamp: moment.valueOf()
 	});
