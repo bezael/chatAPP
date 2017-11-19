@@ -9,6 +9,19 @@ let clientInfo = {};
 
 io.on('connection', function(socket){
 	//console.log('user connected via socket.io');
+	socket.on('disconnect', function(){
+		let userData = clientInfo[socket.id];
+
+		if(typeof userData !== 'undefined'){
+			socket.leave(userData.room);
+			io.to(userData.room).emit('message', {
+				name:'System',
+				text:userData.name + ' has left!',
+				timestamp: moment().valueOf()
+			});
+		}
+		delete userData;
+	});
 	socket.on('joinRoom', function(req){
 		clientInfo[socket.id]=req;
 		
@@ -28,7 +41,7 @@ io.on('connection', function(socket){
 	socket.emit('message', {
 		name: 'System',
 		text: 'Welcome to the chat application!',
-		timestamp: moment.valueOf()
+		timestamp: moment().valueOf()
 	});
 });
 http.listen(port, function(){
