@@ -1,9 +1,14 @@
 let name = getQueryVariable('name') || 'Anonymous';
 let room = getQueryVariable('room');
 let socket = io();
+jQuery('#room-title').text(room);
 
 socket.on('connect', function(){
 	console.log('Connected to socket.io server!');
+	socket.emit('joinRoom',{
+		name:name,
+		room:room
+	});
 });
 
 socket.on('message', function(message){
@@ -16,6 +21,7 @@ socket.on('message', function(message){
 //Handles submitting of new message
 let $form = jQuery('#message-form');
 let $text = jQuery('#TxtMessage');
+
 
 $form.on('submit', function(event){
 	event.preventDefault();
